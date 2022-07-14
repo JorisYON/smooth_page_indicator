@@ -17,6 +17,7 @@ class WormEffect extends BasicIndicatorEffect {
     double strokeWidth = 1.0,
     PaintingStyle paintStyle = PaintingStyle.fill,
     this.type = WormType.normal,
+    LinearGradient? linearGradient,
   }) : super(
           dotWidth: dotWidth,
           dotHeight: dotHeight,
@@ -26,6 +27,7 @@ class WormEffect extends BasicIndicatorEffect {
           paintStyle: paintStyle,
           dotColor: dotColor,
           activeDotColor: activeDotColor,
+          linearGradient: linearGradient
         );
 
   @override

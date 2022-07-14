@@ -17,7 +17,8 @@ class WormPainter extends BasicIndicatorPainter {
     // paint still dots
     paintStillDots(canvas, size);
 
-    final activeDotPaint = Paint()..color = effect.activeDotColor;
+    var rect = Offset.zero & size;
+    final activeDotPaint = effect.linearGradient != null ? (Paint()..shader = effect.linearGradient!.createShader(rect)):Paint()..color = effect.activeDotColor;
     final dotOffset = (offset - offset.toInt());
 
     // handle dot travel from end to start (for infinite pager support)

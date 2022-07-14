@@ -46,6 +46,8 @@ abstract class BasicIndicatorEffect extends IndicatorEffect {
   /// This is ignored if [paintStyle] is PaintStyle.fill
   final double strokeWidth;
 
+  final LinearGradient? linearGradient;
+
   const BasicIndicatorEffect({
     required this.strokeWidth,
     required this.dotWidth,
@@ -54,6 +56,7 @@ abstract class BasicIndicatorEffect extends IndicatorEffect {
     required this.radius,
     required this.dotColor,
     required this.paintStyle,
+    this.linearGradient,
     required this.activeDotColor,
   }) : assert(dotWidth >= 0 &&
             dotHeight >= 0 &&
