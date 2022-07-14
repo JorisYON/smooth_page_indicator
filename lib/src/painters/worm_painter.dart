@@ -18,12 +18,13 @@ class WormPainter extends BasicIndicatorPainter {
     paintStillDots(canvas, size);
 
     var rect = Offset.zero & size;
-    final activeDotPaint = effect.linearGradient != null ? (Paint()..shader = effect.linearGradient!.createShader(rect)):Paint()..color = effect.activeDotColor;
+    var activeDotPaint = effect.linearGradient != null ? (Paint()..shader = effect.linearGradient!.createShader(rect)):Paint()..color = effect.activeDotColor;
     final dotOffset = (offset - offset.toInt());
 
     // handle dot travel from end to start (for infinite pager support)
     if (offset > count - 1) {
       final startDot = calcPortalTravel(size, effect.dotWidth / 2, dotOffset);
+
       canvas.drawRRect(startDot, activeDotPaint);
 
       final endDot = calcPortalTravel(
@@ -31,6 +32,8 @@ class WormPainter extends BasicIndicatorPainter {
         ((count - 1) * distance) + (effect.dotWidth / 2),
         1 - dotOffset,
       );
+      activeDotPaint = effect.linearGradient != null ? (Paint()..shader = effect.linearGradient!.createShader(endDot.outerRect)):Paint()..color = effect.activeDotColor;
+
       canvas.drawRRect(endDot, activeDotPaint);
       return;
     }
@@ -60,6 +63,9 @@ class WormPainter extends BasicIndicatorPainter {
       yPos + dotHeight / 2,
       dotRadius,
     );
+
+    activeDotPaint = effect.linearGradient != null ? (Paint()..shader = effect.linearGradient!.createShader(worm.outerRect)):Paint()..color = effect.activeDotColor;
+
     canvas.drawRRect(worm, activeDotPaint);
   }
 }
